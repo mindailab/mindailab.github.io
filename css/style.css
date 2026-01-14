@@ -267,13 +267,13 @@ nav a:hover::after {
 }
 
 #about strong {
-    color: #4299e1;
-    font-weight: 700;
-    background: linear-gradient(90deg, #4299e1, #38a169);
+     background: linear-gradient(90deg, #667eea, #764ba2);
     -webkit-background-clip: text;
+    background-clip: text; /* Add this line */
     -webkit-text-fill-color: transparent;
-    padding: 0 2px;
+    color: transparent; /* Add this for non-webkit browsers */
 }
+
 
 /* Better paragraph spacing */
 #about p br {
