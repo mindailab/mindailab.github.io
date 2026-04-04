@@ -321,13 +321,13 @@
     counter-reset: journal-counter conference-counter;
 }
 
-/* Journal items - automatic numbering */
+/* Journal items */
 .publication-item.journal .pub-number::before {
     counter-increment: journal-counter;
     content: counter(journal-counter);
 }
 
-/* Conference items - automatic numbering */
+/* ALL conference items (including those with Best Paper or ACL inside) */
 .publication-item.conference .pub-number::before {
     counter-increment: conference-counter;
     content: counter(conference-counter);
@@ -612,39 +612,41 @@
     counter-reset: journal-papers conference-papers best-paper-awards acl-papers;
 }
 
-/* Count each journal paper */
-.publication-item.journal {
-    counter-increment: journal-papers;
-}
-
-/* Count each conference paper */
+/* Default conference */
 .publication-item.conference {
     counter-increment: conference-papers;
 }
 
-/* Count awards - you'll need to add a class to award-winning papers */
-.publication-item.award-winning {
-    counter-increment: best-paper-awards;
+/* Best Paper */
+.publication-item.conference.award-winning {
+    counter-increment: conference-papers best-paper-awards;
 }
 
-/* Count ACL papers - you'll need to add a class to ACL papers */
-.publication-item.acl-paper {
-    counter-increment: acl-papers;
+/* ACL Paper */
+.publication-item.conference.acl-paper {
+    counter-increment: conference-papers acl-papers;
 }
 
-/* Update all stat numbers */
+/* BOTH (Best + ACL) */
+.publication-item.conference.award-winning.acl-paper {
+    counter-increment: conference-papers best-paper-awards acl-papers;
+}
+
+/* Journal */
+.publication-item.journal {
+    counter-increment: journal-papers;
+}
+
+/* Display */
 .stat-item:nth-child(1) .stat-number::before {
     content: counter(journal-papers);
 }
-
 .stat-item:nth-child(2) .stat-number::before {
     content: counter(conference-papers);
 }
-
 .stat-item:nth-child(3) .stat-number::before {
     content: counter(best-paper-awards);
 }
-
 .stat-item:nth-child(4) .stat-number::before {
     content: counter(acl-papers);
 }
